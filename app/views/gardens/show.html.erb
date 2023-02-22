@@ -1,0 +1,11 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= @garden.banner_url %>');">
+	<div class="container">
+		<h1><%= @garden.name %></h1>
+	</div>
+</div>
+
+<%= simple_form_for [@garden, @plant] do |f|%>
+	<%= f.input :name, placeholder: "Palm tree" %>
+	<%= f.input :image_url, placeholder: "https://some_nice_image_found_on_google.jpg" %>
+	<%= f.submit "Add", class: "btn btn-primary" %>
+<% end %>
