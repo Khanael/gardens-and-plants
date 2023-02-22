@@ -11,6 +11,15 @@ class PlantsController < ApplicationController
     end
   end
 
+  def destroy
+    @plant = Plant.find(params[:id])
+    if @plant.destroy
+      redirect_to "/gardens/show", status: :see_other
+    else
+      render "gardens/show"
+    end
+  end
+
   private
 
   def plant_params

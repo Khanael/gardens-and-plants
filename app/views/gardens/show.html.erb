@@ -4,8 +4,17 @@
 	</div>
 </div>
 
-<%= simple_form_for [@garden, @plant] do |f|%>
-	<%= f.input :name, placeholder: "Palm tree" %>
-	<%= f.input :image_url, placeholder: "https://some_nice_image_found_on_google.jpg" %>
-	<%= f.submit "Add", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+	<%= simple_form_for [@garden, @plant] do |f|%>
+		<%= f.input :name, placeholder: "Palm tree" %>
+		<%= f.input :image_url, placeholder: "https://some_nice_image_found_on_google.jpg" %>
+		<%= f.submit "Add", class: "btn btn-primary" %>
+	<% end %>
+
+	<% @garden.plants.each do |plant| %>
+		<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= plant.image_url %>')">
+			<%= plant.name %>
+			<%= link_to "+", plant_path(plant), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "card-remove-link" %>
+		</div>
+	<% end %>
+</div>
